@@ -2,9 +2,16 @@ import React, { useEffect } from 'react'
 import { View, FlatList, StyleSheet, Text } from 'react-native'
 import { useGameStore } from '../store/gameStore'
 import GameCard from '../components/GameCard'
-import { Game } from '@/types/game'
+import { Game, RootStackParamList } from '@/types/game'
+import { StackNavigationProp } from '@react-navigation/stack'
 
-const GamesScreen = ({ navigation }) => {
+type GamesScreenNavigationProp = StackNavigationProp<RootStackParamList, 'GamesList'>
+
+interface GamesScreenProps {
+	navigation: GamesScreenNavigationProp
+}
+
+const GamesScreen = ({ navigation }: GamesScreenProps) => {
 	const { games, loading, error, fetchGames } = useGameStore()
 
 	useEffect(() => {
