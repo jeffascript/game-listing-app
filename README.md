@@ -42,7 +42,11 @@ git clone https://github.com/your-username/game-listing-app.git
 npm install
 ```
 
-3. Start the Expo development server:
+3. Change `.env.example`to `.env` and add your API key:
+```bash
+API_KEY=
+```
+4. Start the Expo development server:
 ```bash
 npx expo start
 ```
