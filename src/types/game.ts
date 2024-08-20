@@ -1,10 +1,10 @@
 export interface Game {
 	id: string
 	title: string
-	description: string
-	icon: string
-	banner: string
+	iconURL: string
+	bannerURL: string
 	rating: number
+	description: string
 }
 
 export interface GameState {
