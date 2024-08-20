@@ -66,4 +66,21 @@ Users can tap on a game to view its details and add/remove it from their favorit
 The app uses a mock game API. To make API calls, include the API key in the headers:
 
 ```typescript
-const API_KEY = ENV VAR
+ API_KEY = Env Variable
+```
+
+
+## Improvement Ideas
+
+Here are some ideas to further enhance the app:
+
+1. **Search Functionality**: Implement a search bar to allow users to quickly find games by name or genre.
+2. **User Authentication**: Add user authentication to save user preferences and favorite games across devices.
+3. **Game Reviews and Ratings**: Allow users to leave reviews and rate games, and display average ratings.
+4. **Push Notifications**: Notify users about new game releases or updates to their favorite games.
+5. **Offline Mode**: Enable offline access to previously viewed games and favorites.
+6. **Dark Mode**: Add a dark mode option for better user experience in low-light environments.
+7. **Game Categories**: Organize games into categories or genres for easier browsing.
+8. **In-App Purchases**: Offer in-app purchases for premium features or ad-free experience.
+9. **Social Sharing**: Allow users to share their favorite games on social media platforms.
+10. **Performance Optimization**: Continuously optimize the app for better performance and faster load times.
