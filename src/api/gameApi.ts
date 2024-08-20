@@ -1,7 +1,7 @@
-import axios from 'axios'
-import { Game } from '../types/game'
+import axios, { AxiosError } from 'axios'
+import { Game } from '@/types/game'
 
-const API_KEY = '01964fa8-f0e5-40fc-a13b-9f5c3a5415f3'
+const API_KEY = process.env.REACT_APP_API_KEY
 const BASE_URL = 'https://mock-game-api-9a408f047f23.herokuapp.com/api'
 
 const api = axios.create({
@@ -11,12 +11,30 @@ const api = axios.create({
 	},
 })
 
+const handleApiError = (error: AxiosError): never => {
+	if (error.response) {
+		throw new Error(`API error: ${error.response.status} - ${error.response.data}`)
+	} else if (error.request) {
+		throw new Error('No response received from the server')
+	} else {
+		throw new Error(`Error setting up the request: ${error.message}`)
+	}
+}
+
 export const fetchGames = async (): Promise<Game[]> => {
-	const response = await api.get<Game[]>('/games')
-	return response.data
+	try {
+		const response = await api.get<Game[]>('/games')
+		return response.data
+	} catch (error) {
+		return handleApiError(error as AxiosError)
+	}
 }
 
 export const fetchGameDetails = async (gameId: string): Promise<Game> => {
-	const response = await api.get<Game>(`/games/${gameId}`)
-	return response.data
+	try {
+		const response = await api.get<Game>(`/games/${gameId}`)
+		return response.data
+	} catch (error) {
+		return handleApiError(error as AxiosError)
+	}
 }
