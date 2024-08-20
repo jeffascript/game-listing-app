@@ -43,13 +43,14 @@ const App: React.FC = () => {
 			<Tab.Navigator
 				screenOptions={({ route }) => ({
 					tabBarIcon: ({ focused, color, size }) => {
-						let iconName: 'game-controller' | 'game-controller-outline' | 'heart' | 'heart-outline'
-
-						if (route.name === 'Games') {
-							iconName = focused ? 'game-controller' : 'game-controller-outline'
-						} else if (route.name === 'Favorites') {
-							iconName = focused ? 'heart' : 'heart-outline'
-						}
+						const iconName =
+							route.name === 'Games'
+								? focused
+									? 'game-controller'
+									: 'game-controller-outline'
+								: focused
+									? 'heart'
+									: 'heart-outline'
 
 						return <Ionicons name={iconName} size={size} color={color} />
 					},

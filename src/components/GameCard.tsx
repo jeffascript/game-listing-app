@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { useGameStore } from '../store/gameStore'
 import { Game } from '@/types/game'
+import { useAppNavigation } from '@/hooks/useAppNavigation'
 
 interface GameCardProps {
 	game: Game
 	onPress: () => void
 }
 
-const GameCard: React.FC<GameCardProps> = ({ game, onPress }) => {
+const GameCard: React.FC<GameCardProps> = memo(({ game }) => {
 	const { toggleFavorite, favorites } = useGameStore()
+	const { navigateToGameDetails } = useAppNavigation()
 	const isFavorite = favorites.some((fav) => fav.id === game.id)
 
 	return (
 		<View style={styles.main}>
-			<TouchableOpacity style={styles.card} onPress={onPress}>
+			<TouchableOpacity style={styles.card} onPress={() => navigateToGameDetails(game.id)}>
 				<Image source={{ uri: game.iconURL }} style={styles.icon} />
 				<View style={styles.info}>
 					<Text style={styles.title}>{game.title}</Text>
@@ -28,12 +30,12 @@ const GameCard: React.FC<GameCardProps> = ({ game, onPress }) => {
 				</TouchableOpacity>
 			</TouchableOpacity>
 
-			<TouchableOpacity style={styles.detailsButton} onPress={onPress}>
+			<TouchableOpacity style={styles.detailsButton} onPress={() => navigateToGameDetails(game.id)}>
 				<Text style={styles.detailsButtonText}>Details</Text>
 			</TouchableOpacity>
 		</View>
 	)
-}
+})
 
 const styles = StyleSheet.create({
 	main: {
@@ -50,15 +52,6 @@ const styles = StyleSheet.create({
 	card: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		// backgroundColor: '#fff',
-		// borderRadius: 8,
-		// padding: 12,
-		// marginBottom: 16,
-		// elevation: 3,
-		// shadowColor: '#000',
-		// shadowOffset: { width: 0, height: 2 },
-		// shadowOpacity: 0.1,
-		// shadowRadius: 4,
 	},
 	icon: {
 		width: 60,
