@@ -1,7 +1,8 @@
 import axios, { AxiosError } from 'axios'
 import { Game } from '@/types/game'
 
-const API_KEY = process.env.REACT_APP_API_KEY
+const API_KEY = '01964fa8-f0e5-40fc-a13b-9f5c3a5415f3'
+
 const BASE_URL = 'https://mock-game-api-9a408f047f23.herokuapp.com/api'
 
 const api = axios.create({
