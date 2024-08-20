@@ -33,13 +33,8 @@ export type BottomTabParamList = {
 	Favorites: undefined
 }
 
-export type GamesStackParamList = {
-	GamesList: undefined
-	GameDetails: { gameId: string }
-}
-
-export type FavoritesStackParamList = {
-	FavoritesList: undefined
+export type StackParamList = {
+	List: undefined
 	GameDetails: { gameId: string }
 }
 
@@ -54,27 +49,18 @@ export interface GameDetailsScreenProps {
 			gameId: string
 		}
 	}
+	navigation: GameDetailsScreenNavigationProp
 }
 
 import { StackNavigationProp } from '@react-navigation/stack'
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
+import { RouteProp } from '@react-navigation/native'
 
-export type GamesScreenNavigationProp = StackNavigationProp<GamesStackParamList, 'GamesList'>
-export type FavoritesScreenNavigationProp = StackNavigationProp<
-	FavoritesStackParamList,
-	'FavoritesList'
->
-export type GameDetailsScreenNavigationProp = StackNavigationProp<
-	GamesStackParamList | FavoritesStackParamList,
-	'GameDetails'
->
-
+export type ScreenNavigationProp = StackNavigationProp<StackParamList, 'List'>
+export type GameDetailsScreenNavigationProp = StackNavigationProp<StackParamList, 'GameDetails'>
 export type TabNavigationProp = BottomTabNavigationProp<BottomTabParamList>
 
 export interface GamesScreenProps {
-	navigation: GamesScreenNavigationProp
-}
-
-export interface FavoritesScreenProps {
-	navigation: FavoritesScreenNavigationProp
+	navigation: ScreenNavigationProp
+	route: RouteProp<RootStackParamList, 'GamesList'>
 }

@@ -8,21 +8,10 @@ import {
 	TouchableOpacity,
 	ActivityIndicator,
 } from 'react-native'
-import { useGameStore } from '../store/gameStore'
-import { Game, RootStackParamList } from '@/types/game'
+import { useGameStore } from '@/store/gameStore'
+import { Game, GameDetailsScreenProps } from '@/types/game'
 
-import { RouteProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
-
-type GameDetailsScreenRouteProp = RouteProp<RootStackParamList, 'GameDetails'>
-type GameDetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'GameDetails'>
-
-interface GameDetailsScreenProps {
-	route: GameDetailsScreenRouteProp
-	navigation: GameDetailsScreenNavigationProp
-}
-
-const GameDetailsScreen: React.FC<GameDetailsScreenProps> = ({ route, navigation }) => {
+const GameDetailsScreen = ({ route }: GameDetailsScreenProps) => {
 	const { gameId } = route.params
 	const { fetchGameDetails, toggleFavorite, favorites } = useGameStore()
 	const [game, setGame] = useState<Game | null>(null)

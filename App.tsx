@@ -3,9 +3,9 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Ionicons } from '@expo/vector-icons'
-import GamesScreen from './src/screens/GamesScreen'
-import FavoritesScreen from './src/screens/FavoritesScreen'
-import GameDetailsScreen from './src/screens/GameDetailsScreen'
+import GamesScreen from '@/screens/GamesScreen'
+import FavoritesScreen from '@/screens/FavoritesScreen'
+import GameDetailsScreen from '@/screens/GameDetailsScreen'
 import { RootStackParamList, BottomTabParamList } from '@/types/game'
 
 const Tab = createBottomTabNavigator<BottomTabParamList>()
@@ -43,16 +43,10 @@ const App: React.FC = () => {
 			<Tab.Navigator
 				screenOptions={({ route }) => ({
 					tabBarIcon: ({ focused, color, size }) => {
-						const iconName =
-							route.name === 'Games'
-								? focused
-									? 'game-controller'
-									: 'game-controller-outline'
-								: focused
-									? 'heart'
-									: 'heart-outline'
+						const iconName = route.name === 'Games' ? 'game-controller' : 'heart'
+						const iconVariant = focused ? '' : '-outline'
 
-						return <Ionicons name={iconName} size={size} color={color} />
+						return <Ionicons name={`${iconName}${iconVariant}`} size={size} color={color} />
 					},
 				})}
 			>

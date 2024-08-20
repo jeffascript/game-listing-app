@@ -2,14 +2,7 @@ import React from 'react'
 import { View, FlatList, Text, StyleSheet } from 'react-native'
 import { useGameStore } from '../store/gameStore'
 import GameCard from '../components/GameCard'
-import { Game, RootStackParamList } from '@/types/game'
-import { StackNavigationProp } from '@react-navigation/stack'
-
-type FavoritesScreenNavigationProp = StackNavigationProp<RootStackParamList, 'FavoritesList'>
-
-interface FavoritesScreenProps {
-	navigation: FavoritesScreenNavigationProp
-}
+import { FavoritesScreenProps, Game } from '@/types/game'
 
 const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
 	const { favorites } = useGameStore()

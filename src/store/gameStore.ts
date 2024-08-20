@@ -1,5 +1,3 @@
-// src/store/gameStore.ts
-
 import { create } from 'zustand'
 import { GameStore, Game } from '@/types/game'
 import { fetchGames, fetchGameDetails } from '@/api/gameApi'
